@@ -34,7 +34,7 @@
 			<td colspan="2" align="right">
 				<a href="">답변</a>&nbsp;&nbsp;
 				<a href="modify_view?bid=${content.bid }">수정</a>&nbsp;&nbsp;
-				<a href="">삭제</a>&nbsp;&nbsp;
+				<a href="delete?bid=${content.bid }">삭제</a>&nbsp;&nbsp;
 				<a href="list">목록</a>&nbsp;&nbsp;
 			</td>
 	</table>

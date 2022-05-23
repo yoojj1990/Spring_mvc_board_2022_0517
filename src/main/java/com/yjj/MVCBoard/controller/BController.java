@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yjj.MVCBoard.command.BCoammand;
 import com.yjj.MVCBoard.command.BContentCommand;
+import com.yjj.MVCBoard.command.BDeleteCommand;
 import com.yjj.MVCBoard.command.BListCommand;
 import com.yjj.MVCBoard.command.BModifycommand;
 import com.yjj.MVCBoard.command.BWriteCommand;
@@ -92,8 +93,17 @@ public class BController {
 	}
 	
 	
-	
-	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BDeleteCommand();
+		command.excute(model);
+		
+		
+		return "redirect:list";
+	}
 	
 	
 	
