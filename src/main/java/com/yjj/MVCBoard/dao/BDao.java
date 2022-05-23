@@ -130,6 +130,8 @@ public class BDao {
 	
 	public BDto content_view(String cid) {
 		
+		uphit(cid);// 조회수 계산 함수
+		
 		BDto dto = null;
 		
 		Connection conn = null;
@@ -261,6 +263,59 @@ public class BDao {
 		}
 		
 	}
+	
+	
+	
+	public void uphit(String bid) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			String query = "UPDATE mvc_board SET bhit=bhit+1 WHERE bid=?";
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, bid);
+			
+			
+			pstmt.executeUpdate(); // 데이터 삽입에 성공하면 1반환
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
