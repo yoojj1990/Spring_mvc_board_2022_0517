@@ -23,7 +23,9 @@
 		<tr>
 			<td align="center">${dto.bid }</td>
 			<td align="center">${dto.bname }</td>
+			
 			<td><a href="content_view?bid=${dto.bid }">${dto.btitle }</a></td>
+			
 			<td align="center">${dto.bdate }</td>
 			<td align="center">${dto.bhit }</td>
 		</tr>

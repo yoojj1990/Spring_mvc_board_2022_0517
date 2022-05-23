@@ -11,6 +11,8 @@ import com.yjj.MVCBoard.command.BContentCommand;
 import com.yjj.MVCBoard.command.BDeleteCommand;
 import com.yjj.MVCBoard.command.BListCommand;
 import com.yjj.MVCBoard.command.BModifycommand;
+import com.yjj.MVCBoard.command.BReplyCommand;
+import com.yjj.MVCBoard.command.BReplyViewCommand;
 import com.yjj.MVCBoard.command.BWriteCommand;
 
 @Controller
@@ -107,10 +109,30 @@ public class BController {
 	
 	
 	
+	@RequestMapping("/reply_view")
+	public String reply_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplyViewCommand();
+		command.excute(model);
+		
+		
+		return "reply_view";
+	}
 	
 	
-	
-	
+	@RequestMapping("/reply")
+	public String reply(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplyCommand();
+		command.excute(model);
+		
+		
+		return "redirect:list";
+	}
 	
 	
 	
