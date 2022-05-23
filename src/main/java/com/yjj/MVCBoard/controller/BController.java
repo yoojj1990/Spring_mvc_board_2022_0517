@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yjj.MVCBoard.command.BCoammand;
 import com.yjj.MVCBoard.command.BContentCommand;
 import com.yjj.MVCBoard.command.BListCommand;
+import com.yjj.MVCBoard.command.BModifycommand;
 import com.yjj.MVCBoard.command.BWriteCommand;
 
 @Controller
@@ -66,10 +67,29 @@ public class BController {
 	
 	
 	
+	@RequestMapping("/modify_view")
+	public String modify_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentCommand();
+		command.excute(model);
+		
+		
+		return "modify_view";
+	}
 	
-	
-	
-	
+	@RequestMapping("/modify")
+	public String modify(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BModifycommand();
+		command.excute(model);
+		
+		
+		return "redirect:list";
+	}
 	
 	
 	
