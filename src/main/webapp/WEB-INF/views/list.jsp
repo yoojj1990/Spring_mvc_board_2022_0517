@@ -21,13 +21,22 @@
 		
 		<c:forEach items="${list}" var="dto">
 		<tr>
-			<td>${dto.bid }</td>
-			<td>${dto.bname }</td>
-			<td>${dto.btitle }</td>
-			<td>${dto.bdate }</td>
-			<td>${dto.bhit }</td>
+			<td align="center">${dto.bid }</td>
+			<td align="center">${dto.bname }</td>
+			<td><a href="content_view?bid=${dto.bid }">${dto.btitle }</a></td>
+			<td align="center">${dto.bdate }</td>
+			<td align="center">${dto.bhit }</td>
 		</tr>
 		</c:forEach>
+		
+		<tr>
+		
+			<td colspan="5"  align="center"><a href="write_form">글쓰기</a></td>
+		
+		</tr>
+		
+		
+		
 		
 	</table>
 </body>

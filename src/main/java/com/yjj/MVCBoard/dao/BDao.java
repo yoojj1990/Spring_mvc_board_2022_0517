@@ -89,6 +89,108 @@ public class BDao {
 	
 	
 	
+	public void write(String bname, String btitle, String bcontent) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			String query = "INSERT INTO mvc_board(bid, bname, btitle, bcontent, bhit, bgroup, bstep, bindent) VALUES (MVC_BOARD_SEQ.nextval, ?, ?, ?, 0, MVC_BOARD_SEQ.currval, 0, 0)";
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, bname);
+			pstmt.setString(2, btitle);
+			pstmt.setString(3, bcontent);
+			
+			pstmt.executeUpdate(); // 데이터 삽입에 성공하면 1반환
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	public BDto content_view(String cid) {
+		
+		BDto dto = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			String query = "select * from mvc_board where bid=?";
+			pstmt = conn.prepareStatement(query);
+			
+			//pstmt.setInt(1, Integer.parseInt(cid)); // bid 필드값이 number인경우
+			pstmt.setString(1, cid);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				int bId = rs.getInt("bid");
+				String bName = rs.getString("bname");
+				String bTitle = rs.getString("btitle");
+				String bContent = rs.getString("bcontent");
+				Timestamp bDate = rs.getTimestamp("bdate");
+				int bHit = rs.getInt("bhit");
+				int bGroup = rs.getInt("bgroup");
+				int bStep = rs.getInt("bstep");
+				int bIndent = rs.getInt("bindent");
+				
+				dto = new BDto(bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent);
+				
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return dto;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
