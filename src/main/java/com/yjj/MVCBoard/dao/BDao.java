@@ -26,11 +26,6 @@ public class BDao {
 		
 		try {
 			Context context = new InitialContext();
-		} catch (NamingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
@@ -57,10 +52,10 @@ public class BDao {
 			while(rs.next()) {
 				
 				int bId = rs.getInt("bid");
-				String bName = rs.getString("bName");
+				String bName = rs.getString("bname");
 				String bTitle = rs.getString("btitle");
 				String bContent = rs.getString("bcontent");
-				Timestamp bDate = rs.getTimestamp("bdata");
+				Timestamp bDate = rs.getTimestamp("bdate");
 				int bHit = rs.getInt("bhit");
 				int bGroup = rs.getInt("bgroup");
 				int bStep = rs.getInt("bstep");

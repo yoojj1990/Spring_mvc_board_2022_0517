@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yjj.MVCBoard.command.BCoammand;
 import com.yjj.MVCBoard.command.BListCommand;
+import com.yjj.MVCBoard.command.BWriteCommand;
 
 @Controller
 public class BController {
@@ -22,7 +23,14 @@ public class BController {
 		return "list";
 	}
 	
-	
+	@RequestMapping("/write")
+	public String write(Model model) {
+		
+		command = new BWriteCommand();
+		command.excute(model);
+		
+		return "write";
+	}
 	
 	
 	
